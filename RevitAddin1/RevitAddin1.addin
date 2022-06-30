@@ -9,6 +9,24 @@
     <VendorId>com.typepad.thebuildingcoder</VendorId>
     <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
   </AddIn>
+	<AddIn Type="Command">
+		<Text>Command 01</Text>
+		<Description>Some description for RevitAddin1</Description>
+		<Assembly>RevitAddin1.dll</Assembly>
+		<FullClassName>RevitAddin1.Command01</FullClassName>
+		<ClientId>FD5E9CB3-F9BD-44C2-8F59-01135F668C8E</ClientId>
+		<VendorId>com.typepad.thebuildingcoder</VendorId>
+		<VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+	</AddIn>
+	<AddIn Type="Command">
+		<Text>Command FizzBuzz</Text>
+		<Description>Some description for RevitAddin1</Description>
+		<Assembly>RevitAddin1.dll</Assembly>
+		<FullClassName>RevitAddin1.FizzBuzz</FullClassName>
+		<ClientId>E5DD74E9-E4D6-4558-BABB-2ED0BCB66B48</ClientId>
+		<VendorId>com.typepad.thebuildingcoder</VendorId>
+		<VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+	</AddIn>
   <AddIn Type="Application">
     <Name>Application RevitAddin1</Name>
     <Assembly>RevitAddin1.dll</Assembly>
