@@ -13,7 +13,7 @@ using System.Diagnostics;
 namespace RevitAddin1
 {
     [Transaction(TransactionMode.Manual)]
-    public class FizzBuzz : IExternalCommand
+    public class Command01 : IExternalCommand
     {
         public Result Execute(
           ExternalCommandData commandData,
@@ -25,14 +25,19 @@ namespace RevitAddin1
             Application app = uiapp.Application;
             Document doc = uidoc.Document;
 
+            
+            string text = "Revit add-in academy";
+            string fileName = doc.PathName;
 
             double offset = 0.05;
             double offsetCalc = offset * doc.ActiveView.Scale;
+            
+            XYZ curPoint = new XYZ(0,0,0);
+            XYZ offsetPoint = new XYZ(0,offsetCalc,0);
 
-            XYZ curPoint = new XYZ(0, 0, 0);
-            XYZ offsetPoint = new XYZ(0, offsetCalc, 0);
-
-          
+           
+         
+     
             FilteredElementCollector collector = new FilteredElementCollector(doc);
             collector.OfClass(typeof(TextNoteType));
 
@@ -42,43 +47,24 @@ namespace RevitAddin1
             int range = 100;
             for (int i = 1; i <= range; i++)
             {
-                string result1 = CheckFizzBuzz(i);
-
-                CreateTextNote(doc, result1, curPoint, collector.FirstElementId());
+                TextNote curNote = TextNote.Create(doc, doc.ActiveView.Id, curPoint, "This is Line" + i.ToString(), collector.FirstElementId());
                 curPoint = curPoint.Subtract(offsetPoint);
             }
 
+
+            TextNote myTextNote = TextNote.Create(doc,doc.ActiveView.Id, curPoint,"this is my text note",collector.FirstElementId());
 
             t.Commit();
             t.Dispose();
 
             return Result.Succeeded;
         }
-        internal void CreateTextNote(Document doc, string text, XYZ curPoint, ElementId id)
-        {
-            TextNote curNote = TextNote.Create(doc, doc.ActiveView.Id, curPoint, text, id);
-        }
-        internal string CheckFizzBuzz(int number)
-        {
-            string result1 = "";
 
-            if ((number % 3 == 0) && (number % 5 == 0))
-            {
-                result1 = "FizzBuzz";
-            }
-            else if (number % 3 == 0)
-            {
-                result1 = "Fizz";
-            }
-            else if (number % 5 == 0)
-            {
-                result1 = "Buzz";
-            }
-            else
-            {
-                result1 = number.ToString();
-            }
-            return result1;
+        internal double Method01(double a, double b)
+        {
+            double c = a + b;
+            Debug.Print("Got here" + c.ToString());
+            return c;
         }
     }
 }

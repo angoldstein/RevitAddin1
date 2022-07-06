@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Autodesk Inc.")]
 [assembly: AssemblyProduct("RevitAddin1 Revit C# .NET Add-In")]
-[assembly: AssemblyCopyright("Copyright (C) 2020 by Jeremy Tammik, Autodesk Inc.")]
+[assembly: AssemblyCopyright("Andrea Goldstein")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("321044f7-b0b2-4b1c-af18-e71a19252be0")]
+[assembly: Guid("9240F0F5-D050-47B9-81AB-4CD9CB417479")]
 
 // Version information for an assembly consists of the following four values:
 //

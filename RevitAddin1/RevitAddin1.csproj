@@ -54,6 +54,8 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Command02.cs" />
+    <Compile Include="FizzBuzz.cs" />
+    <Compile Include="Command01.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
