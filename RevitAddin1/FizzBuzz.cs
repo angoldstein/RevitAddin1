@@ -25,47 +25,27 @@ namespace RevitAddin1
             Application app = uiapp.Application;
             Document doc = uidoc.Document;
 
-                        
+
             double offset = 0.05;
             double offsetCalc = offset * doc.ActiveView.Scale;
-            
-            XYZ curPoint = new XYZ(0,0,0);
-            XYZ offsetPoint = new XYZ(0,offsetCalc,0);
-                      
-         
-     
+
+            XYZ curPoint = new XYZ(0, 0, 0);
+            XYZ offsetPoint = new XYZ(0, offsetCalc, 0);
+
+          
             FilteredElementCollector collector = new FilteredElementCollector(doc);
             collector.OfClass(typeof(TextNoteType));
 
             Transaction t = new Transaction(doc, "Create text note");
             t.Start();
 
-            int range1 = 100;
-            for (int i = 1; i <= range1; i++)
+            int range = 100;
+            for (int i = 1; i <= range; i++)
             {
-                string result1 = ""; 
+                string result1 = CheckFizzBuzz(i);
 
-                if ((i % 3 == 0) && (i % 5 == 0))
-                {
-                    result1 = "FizzBuzz";
-                }
-                else if (i % 3 == 0)
-                {
-                    result1 = "Fizz";
-                }
-                else if (i % 5 == 0)
-                {
-                    result1 = "Buzz";
-                }
-                else
-                {
-                    result1 = i.ToString();
-                }
-
-                {
-                    TextNote curNote = TextNote.Create(doc, doc.ActiveView.Id, curPoint, result1, collector.FirstElementId());
-                    curPoint = curPoint.Subtract(offsetPoint);
-                }
+                CreateTextNote(doc, result1, curPoint, collector.FirstElementId());
+                curPoint = curPoint.Subtract(offsetPoint);
             }
 
 
@@ -73,6 +53,32 @@ namespace RevitAddin1
             t.Dispose();
 
             return Result.Succeeded;
+        }
+        internal void CreateTextNote(Document doc, string text, XYZ curPoint, ElementId id)
+        {
+            TextNote curNote = TextNote.Create(doc, doc.ActiveView.Id, curPoint, text, id);
+        }
+        internal string CheckFizzBuzz(int number)
+        {
+            string result1 = "";
+
+            if ((number % 3 == 0) && (number % 5 == 0))
+            {
+                result1 = "FizzBuzz";
+            }
+            else if (number % 3 == 0)
+            {
+                result1 = "Fizz";
+            }
+            else if (number % 5 == 0)
+            {
+                result1 = "Buzz";
+            }
+            else
+            {
+                result1 = number.ToString();
+            }
+            return result1;
         }
     }
 }
