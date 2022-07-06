@@ -63,6 +63,8 @@ namespace RevitAddin1
                 collector.WhereElementIsElementType();
 
                 ViewSheet curSheet = ViewSheet.Create(doc, collector.FirstElementId());
+                curSheet.SheetNumber = "S101";
+                curSheet.Name = "New Sheet";
 
                 t.Commit();
             }
