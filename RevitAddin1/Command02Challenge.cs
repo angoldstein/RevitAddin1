@@ -34,33 +34,28 @@ namespace RevitAddin1
             Excel.Worksheet excelWSsheet = excelWB.Worksheets.Item[2];
 
             Excel.Range excelRnglevel = excelWSlevel.UsedRange;
-            int rowcount = excelRnglevel.Rows.Count;
+            int rowcountlev = excelRnglevel.Rows.Count;
+
+            Excel.Range excelRngSh = excelWSsheet.UsedRange;
+            int rowcountsh = excelRngSh.Rows.Count;
 
             //do some stuff in Excel
-            List<string[]> dataList = new List<string[]>();
 
-            for(int i = 2; i <= rowcount; i++)
+            for (int i = 2; i <= rowcountsh; i++)
             {
-                Excel.Range levelname = excelWSlevel.Cells[i, 1];
-                Excel.Range levelelev = excelWSlevel.Cells[i, 2];
-
-                string dataname = levelname.Value.ToString();
-                double dataelev = levelelev.Value;
-
-                Excel.Range sheetnum = excelWSsheet.Cells[i, 1];
                 Excel.Range sheetname = excelWSsheet.Cells[i, 2];
 
                 string datashname = sheetname.Value.ToString();
+                                
+                Excel.Range sheetnum = excelWSsheet.Cells[i, 1];
+                              
                 string datashnum = sheetnum.Value.ToString();
 
          
                 using (Transaction t = new Transaction(doc))
                 {
-                    t.Start("Create Levels and Sheets");
-
-                    Level curLevel = Level.Create(doc, dataelev);
-                    curLevel.Name = dataname;
-
+                    t.Start("Create Sheets");
+                                       
                     FilteredElementCollector collector = new FilteredElementCollector(doc);
                     collector.OfCategory(BuiltInCategory.OST_TitleBlocks);
                     collector.WhereElementIsElementType();
@@ -72,8 +67,28 @@ namespace RevitAddin1
                     t.Commit();
                 }
             }
-                   
-         
+
+            for (int ii = 2; ii <= rowcountlev; ii++)
+            {
+                Excel.Range levelelev = excelWSlevel.Cells[ii, 2];
+
+                double dataelev = levelelev.Value;
+
+                Excel.Range levelname = excelWSlevel.Cells[ii, 1];
+
+                string dataname = levelname.Value.ToString();
+
+
+                using (Transaction t = new Transaction(doc))
+                {
+                    t.Start("Create Levels");
+
+                    Level curLevel = Level.Create(doc, dataelev);
+                    curLevel.Name = dataname;
+                                     
+                    t.Commit();
+                }
+            }
 
             excelWB.Close();
             excelapp.Quit();
