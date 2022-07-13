@@ -15,6 +15,9 @@
 		<Assembly>RevitAddin1.dll</Assembly>
 		<FullClassName>RevitAddin1.Command02</FullClassName>
 		<ClientId>82757863-A5A3-4657-BEAD-A9F8F409A090</ClientId>
+		<VendorId>com.typepad.thebuildingcoder</VendorId>
+		<VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+	</AddIn>
 	<AddIn Type="Command">
 		<Text>Command 01</Text>
 		<Description>Some description for RevitAddin1</Description>
@@ -30,6 +33,15 @@
 		<Assembly>RevitAddin1.dll</Assembly>
 		<FullClassName>RevitAddin1.FizzBuzz</FullClassName>
 		<ClientId>E5DD74E9-E4D6-4558-BABB-2ED0BCB66B48</ClientId>
+		<VendorId>com.typepad.thebuildingcoder</VendorId>
+		<VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+	</AddIn>
+	<AddIn Type="Command">
+		<Text>Command 02 Challenge</Text>
+		<Description>Some description for RevitAddin1</Description>
+		<Assembly>RevitAddin1.dll</Assembly>
+		<FullClassName>RevitAddin1.Command02Challenge</FullClassName>
+		<ClientId>38133298-22A2-4179-88E4-8B67445A69FB</ClientId>
 		<VendorId>com.typepad.thebuildingcoder</VendorId>
 		<VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
 	</AddIn>
