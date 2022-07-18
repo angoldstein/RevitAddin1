@@ -121,7 +121,7 @@ namespace RevitAddin1
                     curSheet.SheetNumber = sheetstruct.Number;
                     curSheet.Name = sheetstruct.Name;
 
-                    View curView = FindByName(doc, sheetstruct.View);
+                    View curView = GetViewByName(doc, sheetstruct.View);
                                                          
 
                     Viewport newVP = Viewport.Create(doc, curSheet.Id, curView.Id, new XYZ(1, .5, 0));
