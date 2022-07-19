@@ -50,9 +50,13 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Command03Challengecopy.cs" />
+    <Compile Include="Command03Challenge.cs" />
+    <Compile Include="Command03.cs" />
     <Compile Include="Command02Challenge.cs" />
     <Compile Include="Command02.cs" />
     <Compile Include="FizzBuzz.cs" />
@@ -91,6 +95,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -10,6 +10,33 @@
     <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
   </AddIn>
 	<AddIn Type="Command">
+		<Text>Command 03 Challenge - Copy</Text>
+		<Description>Some description for RevitAddin1</Description>
+		<Assembly>RevitAddin1.dll</Assembly>
+		<FullClassName>RevitAddin1.Command03Challengecopy</FullClassName>
+		<ClientId>9D20147D-D669-4A33-B919-7AF1155490AB</ClientId>
+		<VendorId>com.typepad.thebuildingcoder</VendorId>
+		<VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+	</AddIn>
+	<AddIn Type="Command">
+		<Text>Command 03 Challenge</Text>
+		<Description>Some description for RevitAddin1</Description>
+		<Assembly>RevitAddin1.dll</Assembly>
+		<FullClassName>RevitAddin1.Command03Challenge</FullClassName>
+		<ClientId>2388D075-0D30-486A-807C-B87F1688856B</ClientId>
+		<VendorId>com.typepad.thebuildingcoder</VendorId>
+		<VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+	</AddIn>
+	<AddIn Type="Command">
+		<Text>Command 03</Text>
+		<Description>Some description for RevitAddin1</Description>
+		<Assembly>RevitAddin1.dll</Assembly>
+		<FullClassName>RevitAddin1.Command03</FullClassName>
+		<ClientId>81C268CC-E0CC-4B82-A2C1-FC72B26DF0F8</ClientId>
+		<VendorId>com.typepad.thebuildingcoder</VendorId>
+		<VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+	</AddIn>
+	<AddIn Type="Command">
 		<Text>Command 02</Text>
 		<Description>Some description for RevitAddin1</Description>
 		<Assembly>RevitAddin1.dll</Assembly>
