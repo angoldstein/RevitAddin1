@@ -121,10 +121,10 @@ namespace RevitAddin1
                     curSheet.SheetNumber = sheetstruct.Number;
                     curSheet.Name = sheetstruct.Name;
 
-                    View curView = GetViewByName(doc, sheetstruct.View);
+                    //View curView = GetViewByName(doc, sheetstruct.View);
                                                          
 
-                    Viewport newVP = Viewport.Create(doc, curSheet.Id, curView.Id, new XYZ(1, .5, 0));
+                    //Viewport newVP = Viewport.Create(doc, curSheet.Id, curView.Id, new XYZ(1, .5, 0));
 
                     string paramDrawnby = "";
                     foreach (Parameter curParam in curSheet.Parameters)

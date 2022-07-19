@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Command03Challengecopy.cs" />
     <Compile Include="Command03Challenge.cs" />
     <Compile Include="Command03.cs" />
     <Compile Include="Command02Challenge.cs" />
