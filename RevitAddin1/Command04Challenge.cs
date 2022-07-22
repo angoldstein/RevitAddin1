@@ -36,10 +36,12 @@ namespace RevitAddin1
             List<CurveElement> curveList = new List<CurveElement>();
 
             WallType curWallType = GetWallTypeByName(doc, @"Generic - 8""");
+            WallType storeWallType = GetWallTypeByName(doc, "Storefront");
             Level curLevel = GetLevelByName (doc, "Level 1");
-
             MEPSystemType curSystemtype = GetSystemTypeByName(doc, "Domestic Hot Water");
-            PipeType curPipeType = GetPipeTypeByName(doc, "Generic");
+            PipeType curPipeType = GetPipeTypeByName(doc, "Default");
+            MEPSystemType ductSystemType = GetSystemTypeByName(doc, "Supply Air");
+            DuctType curDuctType = GetDuctTypeByName(doc, "Default");
 
             using (Transaction t = new Transaction(doc))
             {
@@ -50,8 +52,7 @@ namespace RevitAddin1
                     if (element is CurveElement)
                     {
                         CurveElement curve = (CurveElement)element;
-                        CurveElement curve2 = element as CurveElement;
-
+                        
                         curveList.Add(curve);
 
                         GraphicsStyle curGS = curve.LineStyle as GraphicsStyle;
@@ -61,15 +62,19 @@ namespace RevitAddin1
 
                         switch (curGS.Name)
                         {
-                            case "<Medium>":
-                                Debug.Print("Found a medium line");
+                            case "<A-GLAZ>":
+                                Wall newstoreWall = Wall.Create(doc, curCurve, storeWallType.Id, curLevel.Id, 15, 0, false, false);
                                 break;
 
-                            case "<Thin lines>":
-                                Debug.Print("Found a thin line");
+                            case "<A-WALL>":
+                                Wall newWall = Wall.Create(doc, curCurve, curWallType.Id, curLevel.Id, 15, 0, false, false);
                                 break;
 
-                            case "<Wide lines>":
+                            case "<M-DUCT>":
+                                Duct newDuct = Duct.Create(doc, curSystemtype.Id, curDuctType.Id, curLevel.Id, startpoint, endpoint);
+                                break;
+
+                            case "<P-PIPE>":
                                 Pipe newPipe = Pipe.Create(doc, curSystemtype.Id, curPipeType.Id, curLevel.Id, startpoint, endpoint);
                                 break;
 
@@ -81,8 +86,7 @@ namespace RevitAddin1
 
                         
 
-                        //Wall newWall = Wall.Create(doc, curCurve, curWallType.Id, curLevel.Id, 15, 0, false, false);
-                        
+                                                
 
                         Debug.Print(curGS.Name);
 
@@ -149,6 +153,21 @@ namespace RevitAddin1
             foreach (Element curElem in collector)
             {
                 PipeType curType = curElem as PipeType;
+
+                if (curType.Name == typeName)
+                    return curType;
+            }
+            return null;
+        }
+
+        private DuctType GetDuctTypeByName(Document doc, string typeName)
+        {
+            FilteredElementCollector collector = new FilteredElementCollector(doc);
+            collector.OfClass(typeof(DuctType));
+
+            foreach (Element curElem in collector)
+            {
+                DuctType curType = curElem as DuctType;
 
                 if (curType.Name == typeName)
                     return curType;
