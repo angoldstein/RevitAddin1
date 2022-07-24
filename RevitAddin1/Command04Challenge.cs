@@ -56,25 +56,48 @@ namespace RevitAddin1
                         curveList.Add(curve);
 
                         GraphicsStyle curGS = curve.LineStyle as GraphicsStyle;
-                        Curve curCurve = curve.GeometryCurve;
-                        XYZ startpoint = curCurve.GetEndPoint(0);
-                        XYZ endpoint = curCurve.GetEndPoint(1);
+                        Curve curCurve = null;
+                        XYZ startpoint=null, endpoint = null;
+
+                        /*switch (curGS.Name)
+                        {
+                            case "A-GLAZ":
+                            case "A-WALL":                             
+                            case "M-DUCT":                              
+                            case "P-PIPE":
+                                curCurve = curve.GeometryCurve;
+                                startpoint = curCurve.GetEndPoint(0);
+                                endpoint = curCurve.GetEndPoint(1);
+
+                                break;
+                        }
+                        */
+
+                        try
+                        {
+                            startpoint = curCurve.GetEndPoint(0);
+                            endpoint = curCurve.GetEndPoint(1);
+                        }
+                        catch
+                        {
+                            Debug.Print("no endpoints");
+                        }
 
                         switch (curGS.Name)
                         {
-                            case "<A-GLAZ>":
+                            case "A-GLAZ":
                                 Wall newstoreWall = Wall.Create(doc, curCurve, storeWallType.Id, curLevel.Id, 15, 0, false, false);
                                 break;
 
-                            case "<A-WALL>":
+                            case "A-WALL":
                                 Wall newWall = Wall.Create(doc, curCurve, curWallType.Id, curLevel.Id, 15, 0, false, false);
                                 break;
 
-                            case "<M-DUCT>":
-                                Duct newDuct = Duct.Create(doc, curSystemtype.Id, curDuctType.Id, curLevel.Id, startpoint, endpoint);
+                            case "M-DUCT":
+                                Duct newDuct = Duct.Create(doc, ductSystemType.Id, curDuctType.Id, curLevel.Id, startpoint, endpoint);
                                 break;
 
-                            case "<P-PIPE>":
+                            case "P-PIPE":
                                 Pipe newPipe = Pipe.Create(doc, curSystemtype.Id, curPipeType.Id, curLevel.Id, startpoint, endpoint);
                                 break;
 
