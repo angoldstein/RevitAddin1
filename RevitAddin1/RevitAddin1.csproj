@@ -51,10 +51,14 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Command04Bonus.cs" />
     <Compile Include="Command04Challenge.cs" />
     <Compile Include="Command04.cs" />
     <Compile Include="Command03Challengecopy.cs" />
@@ -65,6 +69,12 @@
     <Compile Include="FizzBuzz.cs" />
     <Compile Include="Command01.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="FrmCommand04Bonus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCommand04Bonus.Designer.cs">
+      <DependentUpon>FrmCommand04Bonus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +111,11 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FrmCommand04Bonus.resx">
+      <DependentUpon>FrmCommand04Bonus.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
