@@ -32,7 +32,7 @@ namespace RevitAddin1
             Document doc = uidoc.Document;
 
 
-            IList<Element> pickList = uidoc.Selection.PickElementsByRectangle("Select some elements");
+            IList<Element> pickList = uidoc.Selection.PickElementsByRectangle("Select Elements");
             List<CurveElement> curveList = new List<CurveElement>();
 
             WallType curWallType = GetWallTypeByName(doc, @"Generic - 8""");
@@ -43,23 +43,25 @@ namespace RevitAddin1
             MEPSystemType ductSystemType = GetSystemTypeByName(doc, "Supply Air");
             DuctType curDuctType = GetDuctTypeByName(doc, "Default");
 
+            int counter = 0;
+
             using (Transaction t = new Transaction(doc))
             {
                 t.Start("Create Revit Stuff");
 
                 foreach (Element element in pickList)
                 {
-                    if (element is CurveElement)
+                    if (element is CurveElement) // could use ModelLine instead here
                     {
                         CurveElement curve = (CurveElement)element;
                         
                         curveList.Add(curve);
 
                         GraphicsStyle curGS = curve.LineStyle as GraphicsStyle;
-                        Curve curCurve = null;
+                        Curve curCurve = curve.GeometryCurve;
                         XYZ startpoint=null, endpoint = null;
-
-                        /*switch (curGS.Name)
+                        
+                        switch (curGS.Name)
                         {
                             case "A-GLAZ":
                             case "A-WALL":                             
@@ -70,10 +72,9 @@ namespace RevitAddin1
                                 endpoint = curCurve.GetEndPoint(1);
 
                                 break;
-                        }
-                        */
+                        }                       
 
-                        try
+                        /*try
                         {
                             startpoint = curCurve.GetEndPoint(0);
                             endpoint = curCurve.GetEndPoint(1);
@@ -81,35 +82,35 @@ namespace RevitAddin1
                         catch
                         {
                             Debug.Print("no endpoints");
-                        }
+                        }*/
 
                         switch (curGS.Name)
                         {
                             case "A-GLAZ":
                                 Wall newstoreWall = Wall.Create(doc, curCurve, storeWallType.Id, curLevel.Id, 15, 0, false, false);
+                                counter++;
                                 break;
 
                             case "A-WALL":
                                 Wall newWall = Wall.Create(doc, curCurve, curWallType.Id, curLevel.Id, 15, 0, false, false);
+                                counter++;
                                 break;
 
                             case "M-DUCT":
                                 Duct newDuct = Duct.Create(doc, ductSystemType.Id, curDuctType.Id, curLevel.Id, startpoint, endpoint);
+                                counter++;
                                 break;
 
                             case "P-PIPE":
                                 Pipe newPipe = Pipe.Create(doc, curSystemtype.Id, curPipeType.Id, curLevel.Id, startpoint, endpoint);
+                                counter++;
                                 break;
 
                             default:
                                 Debug.Print("found something else");
                                 break;
 
-                        }
-
-                        
-
-                                                
+                        }                                             
 
                         Debug.Print(curGS.Name);
 
@@ -119,11 +120,11 @@ namespace RevitAddin1
             }
             
            
-            TaskDialog.Show("complete", curveList.Count.ToString());
+            TaskDialog.Show("complete", "Created "+ counter.ToString() + " Elements");
             return Result.Succeeded;
         }
 
-        private WallType GetWallTypeByName (Document doc, string wallTypeName)
+        private WallType GetWallTypeByName (Document doc, string typeName)
         {
             FilteredElementCollector collector = new FilteredElementCollector(doc);
             collector.OfClass(typeof(WallType));
@@ -132,7 +133,7 @@ namespace RevitAddin1
             {
                 WallType wallType = curElem as WallType;
 
-                if (wallType.Name == wallTypeName)
+                if (wallType.Name == typeName)
                     return wallType;
             }
             return null;
@@ -142,6 +143,7 @@ namespace RevitAddin1
         {
             FilteredElementCollector collector = new FilteredElementCollector(doc);
             collector.OfClass(typeof(Level));
+            collector.WhereElementIsNotElementType();
 
             foreach (Element curElem in collector)
             {
