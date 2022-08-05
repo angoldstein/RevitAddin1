@@ -9,8 +9,28 @@
     <VendorId>com.typepad.thebuildingcoder</VendorId>
     <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
   </AddIn>
-	
-  <AddIn Type="Command">
+
+	<AddIn Type="Command">
+		<Text>Command 05 Challenge</Text>
+		<Description>Some description for RevitAddin1</Description>
+		<Assembly>RevitAddin1.dll</Assembly>
+		<FullClassName>RevitAddin1.Command05Challenge</FullClassName>
+		<ClientId>96B02FB5-5519-49B5-94E1-A86142E78BB1</ClientId>
+		<VendorId>com.typepad.thebuildingcoder</VendorId>
+		<VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+	</AddIn>
+
+	<AddIn Type="Command">
+		<Text>Command 05</Text>
+		<Description>Some description for RevitAddin1</Description>
+		<Assembly>RevitAddin1.dll</Assembly>
+		<FullClassName>RevitAddin1.Command05</FullClassName>
+		<ClientId>E90B00CC-4D44-4A63-BE08-BDFE722FE79B</ClientId>
+		<VendorId>com.typepad.thebuildingcoder</VendorId>
+		<VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+	</AddIn>
+
+	<AddIn Type="Command">
 	  <Text>Command 04 Bonus</Text>
 	  <Description>Some description for RevitAddin1</Description>
 	  <Assembly>RevitAddin1.dll</Assembly>

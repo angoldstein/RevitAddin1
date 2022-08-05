@@ -58,6 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Furniture Data.cs" />
+    <Compile Include="Command05Challenge.cs" />
+    <Compile Include="Command05.cs" />
     <Compile Include="Command04Bonus.cs" />
     <Compile Include="Command04Challenge.cs" />
     <Compile Include="Command04.cs" />
@@ -75,6 +78,7 @@
     <Compile Include="FrmCommand04Bonus.Designer.cs">
       <DependentUpon>FrmCommand04Bonus.cs</DependentUpon>
     </Compile>
+    <Compile Include="myClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
