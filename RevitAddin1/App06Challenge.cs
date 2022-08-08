@@ -32,16 +32,17 @@ namespace RevitAddin1
             RibbonPanel curPanel = CreateRibbonPanel(a, "Revit Add-in Academy", "Revit Tools");
 
             // step 3: create button data instances
-            PushButtonData pData1 = new PushButtonData("button 1", "Fizz Buzz", GetAssemblyName(), "RevitAddin1.FizzBuzz");
-            PushButtonData pData2 = new PushButtonData("button 2", "Project Setup", GetAssemblyName(), "RevitAddin1.Command02Challenge");
-            PushButtonData pData3 = new PushButtonData("button 3", "Project Setup v2", GetAssemblyName(), "RevitAddin1.Command03Challenge");
-            PushButtonData pData4 = new PushButtonData("button 4", "Elements From Lines", GetAssemblyName(), "RevitAddin1.Command04Challenge");
-            PushButtonData pData5 = new PushButtonData("button 5", "Insert Furniture", GetAssemblyName(), "RevitAddin1.Command05Challenge");
-            PushButtonData pData6 = new PushButtonData("button 6", "Button 6", GetAssemblyName(), "RevitAddin1.Command01");
-            PushButtonData pData7 = new PushButtonData("button 7", "Button 7", GetAssemblyName(), "RevitAddin1.Command01");
-            PushButtonData pData8 = new PushButtonData("button 8", "Button 8", GetAssemblyName(), "RevitAddin1.Command01");
-            PushButtonData pData9 = new PushButtonData("button 9", "Button 9", GetAssemblyName(), "RevitAddin1.Command01");
-            PushButtonData pData10 = new PushButtonData("button 10", "Button 10", GetAssemblyName(), "RevitAddin1.Command01");
+            string assemblyName = GetAssemblyName();
+            PushButtonData pData1 = new PushButtonData("button 1", "Fizz Buzz", assemblyName, "RevitAddin1.FizzBuzz");
+            PushButtonData pData2 = new PushButtonData("button 2", "Project Setup", assemblyName, "RevitAddin1.Command02Challenge");
+            PushButtonData pData3 = new PushButtonData("button 3", "Project Setup v2", assemblyName, "RevitAddin1.Command03Challenge");
+            PushButtonData pData4 = new PushButtonData("button 4", "Elements From Lines", assemblyName, "RevitAddin1.Command04Challenge");
+            PushButtonData pData5 = new PushButtonData("button 5", "Insert Furniture", assemblyName, "RevitAddin1.Command05Challenge");
+            PushButtonData pData6 = new PushButtonData("button 6", "Button 6", assemblyName, "RevitAddin1.Command01");
+            PushButtonData pData7 = new PushButtonData("button 7", "Button 7", assemblyName, "RevitAddin1.Command01");
+            PushButtonData pData8 = new PushButtonData("button 8", "Button 8", assemblyName, "RevitAddin1.Command01");
+            PushButtonData pData9 = new PushButtonData("button 9", "Button 9", assemblyName, "RevitAddin1.Command01");
+            PushButtonData pData10 = new PushButtonData("button 10", "Button 10", assemblyName, "RevitAddin1.Command01");
 
             SplitButtonData sData1 = new SplitButtonData("splitButton1", "Split Button 1");
             PulldownButtonData pbData1 = new PulldownButtonData("pulldownButton1", "More Tools");
